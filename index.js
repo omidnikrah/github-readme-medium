@@ -22,7 +22,7 @@ http.createServer(async (req, res) => {
   const articleDate = new Date(lastArticle.pubDate);
   const image = await nodeHtmlToImage({
     transparent: false,
-    puppeteerArgs: ['--no-sandbox', '--disable-setuid-sandbox'],
+    puppeteerArgs: {executablePath: "chromium-browser", args: ["--no-sandbox", "--disable-setuid-sandbox"]},
     html: `
       <html>
         <body>
