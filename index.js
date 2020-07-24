@@ -11,7 +11,7 @@ http.createServer(async (req, res) => {
     res.end();
     return;
   }
-  const response = await fetch(`https://api.rss2json.com/v1/api.json?rss_url=https://medium.com/feed/@${query.username}`);
+  const response = await fetch(`https://api.rss2json.com/v1/api.json?rss_url=https://medium.com/feed/@${query.username}?t=${Date.now()}`);
   const responseJson = await response.json();
   if (!responseJson.items || responseJson.items.length === 0) {
     res.write(JSON.stringify({error: 'You dont have any medium article'}));
