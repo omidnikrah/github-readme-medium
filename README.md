@@ -1,6 +1,6 @@
 <p align="center">
  <h2 align="center">GitHub Readme Medium</h2>
- <p align="center">Show your last Medium article on your readmes!</p>
+ <p align="center">Show your latest Medium article on your readmes!</p>
 </p>
 
 ### Usage
