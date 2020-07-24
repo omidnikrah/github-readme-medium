@@ -1,5 +1,5 @@
 <p align="center">
-  <img src="https://raw.githubusercontent.com/omidnikrah/github-readme-medium/master/medium.png" />
+  <img width="120px" src="https://raw.githubusercontent.com/omidnikrah/github-readme-medium/master/medium.png" />
   <h2 align="center">GitHub Readme Medium</h2>
   <p align="center">Show your latest Medium article on your readmes!</p>
 </p>
