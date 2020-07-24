@@ -6,12 +6,13 @@ const nodeHtmlToImage = require('node-html-to-image');
 http.createServer(async (req, res) => {
   const reqURL = url.parse(req.url, true);
   const query = reqURL.query;
+  const timestamp = Math.floor(Date.now() / 1000);
   if (!query.username) {
     res.write(JSON.stringify({error: 'Add your medium username as query string'}));
     res.end();
     return;
   }
-  const response = await fetch(`https://api.rss2json.com/v1/api.json?rss_url=https://medium.com/feed/@${query.username}?t=${Date.now()}`);
+  const response = await fetch(`https://api.rss2json.com/v1/api.json?rss_url=https://medium.com/feed/@${query.username}?t=${timestamp}`);
   const responseJson = await response.json();
   if (!responseJson.items || responseJson.items.length === 0) {
     res.write(JSON.stringify({error: 'You dont have any medium article'}));
@@ -86,6 +87,7 @@ http.createServer(async (req, res) => {
       </html>
     `
   });
+  res.setHeader('Cache-Control', 'no-cache');
   res.writeHead(200, { 'Content-Type': 'image/png' });
   res.end(image, 'binary');
 }).listen(process.env.PORT || 3000, function(){
