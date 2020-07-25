@@ -87,8 +87,7 @@ http.createServer(async (req, res) => {
       </html>
     `
   });
-  res.setHeader('Cache-Control', 'public, max-age=1800');
-  res.writeHead(200, { 'Content-Type': 'image/png' });
+  res.writeHead(200, { 'Content-Type': 'image/png', 'Cache-Control', 'no-cache' });
   res.end(image, 'binary');
 }).listen(process.env.PORT || 3000, function(){
  console.log("server start at port 3000");
