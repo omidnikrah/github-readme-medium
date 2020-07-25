@@ -3,6 +3,10 @@ const url = require('url');
 const fetch = require('node-fetch');
 const nodeHtmlToImage = require('node-html-to-image');
 
+const toDataURL = url => {
+  return fetch(url).then(r => r.buffer()).then(buf => `data:image/png;base64,`+buf.toString('base64'));
+};
+
 http.createServer(async (req, res) => {
   const reqURL = url.parse(req.url, true);
   const query = reqURL.query;
@@ -20,6 +24,7 @@ http.createServer(async (req, res) => {
     return;
   }
   const lastArticle = responseJson.items[0];
+  const thumbnailBase64 = await toDataURL(lastArticle.thumbnail);
   const articleDate = new Date(lastArticle.pubDate);
   // const image = await nodeHtmlToImage({
   //   transparent: false,
@@ -104,7 +109,7 @@ http.createServer(async (req, res) => {
     </g>
     
     <g fill="#000000" fill-opacity="1" stroke="#000000" stroke-opacity="1" stroke-width="1" stroke-linecap="square" stroke-linejoin="miter" stroke-miterlimit="2" transform="matrix(1,0,0,1,0,0)">
-      <image x="0" y="0" width="100" height="100" preserveAspectRatio="xMidYMid slice" xlink:href="${lastArticle.thumbnail}"/>
+      <image x="0" y="0" width="100" height="100" preserveAspectRatio="xMidYMid slice" xlink:href="${thumbnailBase64}"/>
     </g>
     
     <g fill="#000000" fill-opacity="1" stroke="#000000" stroke-opacity="1" stroke-width="1" stroke-linecap="square" stroke-linejoin="bevel" transform="matrix(1,0,0,1,0,0)">
