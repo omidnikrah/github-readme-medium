@@ -87,7 +87,9 @@ http.createServer(async (req, res) => {
       </html>
     `
   });
-  res.setHeader('Cache-Control', 's-maxage=1');
+  res.setHeader('Cache-Control', 'private, no-cache, no-store, must-revalidate');
+  res.setHeader('Expires', '-1');
+  res.setHeader('Pragma', 'no-cache');
   res.writeHead(200, { 'Content-Type': 'image/png' });
   res.end(image, 'binary');
 }).listen(process.env.PORT || 3000, function(){
