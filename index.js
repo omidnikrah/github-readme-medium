@@ -1,7 +1,6 @@
 const http = require('http');
 const url = require('url');
 const fetch = require('node-fetch');
-const nodeHtmlToImage = require('node-html-to-image');
 const { readingTimeCalc, imgToDataURL } = require('./utils');
 
 http.createServer(async (req, res) => {
