@@ -19,9 +19,9 @@ const readingTimeCalc = (text) => {
   while (ansiWordBound(text[end])) end--
 
   for (i = start; i <= end;) {
-    for (; i <= end && !ansiWordBound(text[i]); i++) ;
+    for (; i <= end && !ansiWordBound(text[i]); i++);
     words++
-    for (; i <= end && ansiWordBound(text[i]); i++) ;
+    for (; i <= end && ansiWordBound(text[i]); i++);
   }
 
   const minutes = words / wordsPerMinute;
