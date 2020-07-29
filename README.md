@@ -6,7 +6,7 @@
 
 ### Usage
 
-Copy paste this into your markdown content, and that's it. Easy Easy Tammam Tammam!
+Copy paste following markdown into your markdown content, and that's it. Easy Easy Tammam Tammam!
 
 Change the `?username=` value to your Medium's username.
 
