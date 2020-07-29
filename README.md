@@ -15,3 +15,12 @@ Change the `?username=` value to your Medium's username.
 ```
 
 [![Omid Nikrah Medium](https://github-readme-medium.vercel.app/?username=omidnikrah)](https://medium.com/@omidnikrah)
+
+## Options
+|    Name    |           Description           |        Default value       |
+| ---------- | ------------------------------- | -------------------------- |
+| username   | Your Medium username            | REQUIRED                |
+| limit      | Count of articles to show       | 1                          |
+
+## Deploy your own
+[![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/import/git?s=https://github.com/omidnikrah/github-readme-medium)
