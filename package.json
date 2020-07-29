@@ -18,6 +18,7 @@
   },
   "homepage": "https://github.com/omidnikrah/github-readme-medium#readme",
   "dependencies": {
-    "node-fetch": "^2.6.0"
+    "node-fetch": "^2.6.0",
+    "rss-parser": "^3.9.0"
   }
 }

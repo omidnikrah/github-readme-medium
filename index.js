@@ -2,6 +2,7 @@ const http = require('http');
 const url = require('url');
 const fetch = require('node-fetch');
 const ArticleCard = require('./src/ArticleCard');
+const { userArticles } = require('./src/mediumAPI');
 const { asyncForEach } = require('./src/utils');
 
 http.createServer(async (req, res) => {
@@ -16,19 +17,18 @@ http.createServer(async (req, res) => {
     return;
   }
 
-  const response = await fetch(`https://api.rss2json.com/v1/api.json?rss_url=https://medium.com/feed/@${username}?t=${timestamp}`);
-  const responseJson = await response.json();
+  const responseArticles = await userArticles(`${username}?t=${timestamp}`);
 
-  if (!responseJson.items || responseJson.items.length === 0) {
+  if (!responseArticles || responseArticles.length === 0) {
     res.write(JSON.stringify({error: 'You dont have any medium article'}));
     res.end();
     return;
   }
 
   if (limit) {
-    articles = [...responseJson.items.slice(0, limit)];
+    articles = [...responseArticles.slice(0, limit)];
   } else {
-    articles = [responseJson.items[0]];
+    articles = [responseArticles[0]];
   }
 
   let result = `<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="390px" version="1.2" height="${articles.length * 120}">`;
