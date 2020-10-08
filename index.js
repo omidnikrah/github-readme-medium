@@ -31,7 +31,7 @@ http.createServer(async (req, res) => {
     articles = [responseArticles[0]];
   }
 
-  let result = `<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="390px" version="1.2" height="${articles.length * 120}">`;
+  let result = `<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="405px" version="1.2" height="${articles.length * 120}">`;
 
   await asyncForEach(articles, async (article, index) => {
     const articleCard = await ArticleCard(article);
