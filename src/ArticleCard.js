@@ -20,7 +20,7 @@ const ArticleCard = async (data) => {
         </g>
         
         <g fill="#000000" fill-opacity="1" stroke="#000000" stroke-opacity="1" stroke-width="1" stroke-linecap="square" stroke-linejoin="bevel" transform="matrix(1,0,0,1,0,0)">
-        <text fill="#000000" fill-opacity="1" stroke="none" xml:space="preserve" x="125" y="14" font-family="Arial" font-size="15" font-weight="700" font-style="normal">${data.title}</text>
+        <text fill="#000000" fill-opacity="1" stroke="none" xml:space="preserve" x="125" y="14" font-family="Arial" font-size="15" font-weight="700" font-style="normal">${data.title.replace(/&(?!#?[a-z0-9]+;)/g, '&amp;')}</text>
         </g>
 
         <g fill="#000000" fill-opacity="1" stroke="#000000" stroke-opacity="1" stroke-width="1" stroke-linecap="square" stroke-linejoin="bevel" transform="matrix(1,0,0,1,0,0)">
