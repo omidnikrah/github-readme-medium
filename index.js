@@ -29,10 +29,10 @@ http.createServer(async (req, res) => {
   }
 
   if (!colors.bg) {
-    colors.bg = 'white'
+    colors.bg = '22272e'
   }
   if (!colors.text) {
-    colors.text = 'black'
+    colors.text = 'white'
   }
 
   if (limit) {
