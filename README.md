@@ -21,6 +21,12 @@ Change the `?username=` value to your Medium's username.
 [![Omid Nikrah Medium](https://github-readme-medium.vercel.app/?username=omidnikrah&limit=2&bg=red&text=green)](https://medium.com/@omidnikrah)
 ```
 
+use hexacode without using '#' symbol
+
+```md
+[![Omid Nikrah Medium](https://github-readme-medium.vercel.app/?username=omidnikrah&limit=2&bg=222f2e&text=ff0000)](https://medium.com/@omidnikrah)
+```
+
 ## Options
 |    Name    |           Description           |        Default value       |
 | ---------- | ------------------------------- | -------------------------- |
