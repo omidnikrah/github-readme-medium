@@ -2,7 +2,7 @@ const { readingTimeCalc, imgToDataURL } = require('./utils');
 
 const ArticleCard = async (data, colors) => {
 
-  const thumbnailBase64 = data.thumbnail;
+  const thumbnailBase64 = imgToDataURL(data.thumbnail);
   const articleDate = new Date(data.pubDate);
   const readingTime = readingTimeCalc(data.content);
   var re = /[0-9A-Fa-f]{6}/g; //hex code format 
