@@ -1,4 +1,5 @@
-const fetch = require('node-fetch');
+const axios = require('axios');
+const sharp = require('sharp');
 
 const ansiWordBound = (c) => (
   (' ' === c) ||
@@ -31,7 +32,7 @@ const readingTimeCalc = (text) => {
 }
 
 const imgToDataURL = url => {
-  return fetch(url).then(response => response.buffer()).then(buffer => `data:image/png;base64,${buffer.toString('base64')}`);
+  return axios.get(url, { responseType: 'arraybuffer' }).then(({ data }) => sharp(data).resize(200).toBuffer()).then(data => `data:image/png;base64,${data.toString('base64')}`);
 };
 
 const asyncForEach = async (array, callback) => {

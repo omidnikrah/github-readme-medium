@@ -1,6 +1,5 @@
 const http = require('http');
 const url = require('url');
-const fetch = require('node-fetch');
 const ArticleCard = require('./src/ArticleCard');
 const { userArticles } = require('./src/mediumAPI');
 const { asyncForEach } = require('./src/utils');
