@@ -1,7 +1,12 @@
 const { readingTimeCalc, imgToDataURL } = require('./utils');
 
-const ArticleCard = async (data, colors) => {
-  const thumbnailBase64 = await imgToDataURL(data.thumbnail);
+function trimText(text, threshold) {
+  if (text.length <= threshold) return text;
+  return text.substr(0, threshold).concat("...");
+}
+
+const ArticleCard = async (data, colors, placeHolderImgUrl) => {
+  const thumbnailBase64 = await imgToDataURL(data.thumbnail,placeHolderImgUrl);
   const articleDate = new Date(data.pubDate);
   const readingTime = readingTimeCalc(data.content);
   const re = /[0-9A-Fa-f]{6}/g; //hex code format 
@@ -31,7 +36,7 @@ const ArticleCard = async (data, colors) => {
         
         <g fill="#000000" fill-opacity="1" stroke="#000000" stroke-opacity="1" stroke-width="1" stroke-linecap="square" stroke-linejoin="bevel" transform="matrix(1,0,0,1,0,0)">
         
-          <text fill="${hexText ? hexText : colors.text}" fill-opacity="1" stroke="none" xml:space="preserve" x="110" y="20" font-family="Arial" font-size="15" font-weight="700" font-style="normal" >${data.title.replace(/&(?!#?[a-z0-9]+;)/g, '&amp;')}</text>
+          <text fill="${hexText ? hexText : colors.text}" fill-opacity="1" stroke="none" xml:space="preserve" x="110" y="20" font-family="Arial" font-size="15" font-weight="700" font-style="normal">${trimText(data.title.replace(/&(?!#?[a-z0-9]+;)/g, '&amp;'),33)}</text>
           </g>
 
         <g fill="#000000" fill-opacity="1" stroke="#000000" stroke-opacity="1" stroke-width="1" stroke-linecap="square" stroke-linejoin="bevel" transform="matrix(1,0,0,1,0,0)">
