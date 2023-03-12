@@ -7,6 +7,7 @@ const userArticles = async (username) => {
 
   const feed = await parser.parseURL(`https://medium.com/feed/@${username}`);
   let result = [];
+  const imgUrl = feed.image.url;
 
   feed.items.forEach((item) => {
     const imageObj = imageRegex.exec(item['content:encoded']);
@@ -18,7 +19,7 @@ const userArticles = async (username) => {
     result = [...result, item];
   });
 
-  return result;
+  return {profileImgUrl: imgUrl, articles: result};
 
 };
 

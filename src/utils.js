@@ -31,8 +31,21 @@ const readingTimeCalc = (text) => {
   return `${displayed} min read`;
 }
 
-const imgToDataURL = url => {
-  return axios.get(url, { responseType: 'arraybuffer' }).then(({ data }) => sharp(data).resize(200).toBuffer()).then(data => `data:image/png;base64,${data.toString('base64')}`);
+const imgToDataURL = async (url,placeHolder) => {
+  async function processImage(url) {
+    let {data} = await axios.get(url, { responseType: 'arraybuffer' });
+    let sharpedData = await sharp(data).resize(200).toBuffer();
+    return `data:image/png;base64,${sharpedData.toString('base64')}`
+  }
+  try{
+    return await  processImage(url);
+  }catch(e){
+    try{
+      return await processImage(placeHolder);
+    }catch(e){
+      return await processImage("https://lippianfamilydentistry.net/wp-content/uploads/2015/11/user-default.png");
+    }
+  }
 };
 
 const asyncForEach = async (array, callback) => {

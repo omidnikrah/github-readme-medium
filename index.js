@@ -11,14 +11,13 @@ http.createServer(async (req, res) => {
   const timestamp = Math.floor(Date.now() / 1000);
   let articles = [];
 
-
   if (!username) {
     res.write(JSON.stringify({ error: 'Add your medium username as query string' }));
     res.end();
 
     return;
   }
-  const responseArticles = await userArticles(`${username}?t=${timestamp}`);
+  const {articles: responseArticles, profileImgUrl} = await userArticles(`${username}?t=${timestamp}`);
 
   if (!responseArticles || responseArticles.length === 0) {
 
@@ -44,7 +43,7 @@ http.createServer(async (req, res) => {
   let result = `<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="390px" version="1.2" height="${articles.length * 120}">`;
 
   await asyncForEach(articles, async (article, index) => {
-    const articleCard = await ArticleCard(article, colors);
+    const articleCard = await ArticleCard(article, colors,profileImgUrl);
     result += `<g transform="translate(0, ${index * 120})">${articleCard}</g>`;
   });
 
